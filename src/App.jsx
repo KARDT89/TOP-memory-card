@@ -2,6 +2,7 @@ import Card from "./components/Card.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
 
 function App() {
     const [pokemon, setPokemon] = useState([]);
@@ -71,14 +72,19 @@ function App() {
     }, [score]);
 
   return (
-      <div className={'w-screen h-screen flex flex-col justify-around items-center'}>
-          <Navbar currentScore={score} bestScore={bestScore}/>
-          <div className={'grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-10 justify-self-center'}>
-            {pokemon.map((pk) => (
-                <Card key={pk.name} url={pk.url} name={pk.name} onClick={() => handleGame(pk.name)}/>
-            ))}
-        </div>
-      </div>
+      <>
+          <div className={'w-screen h-screen flex flex-col justify-around items-center'}>
+              <Navbar currentScore={score} bestScore={bestScore}/>
+              <div className={'grid grid-cols-2 md:grid-cols-4 xl:grid-cols-5 gap-10 justify-self-center'}>
+                  {pokemon.map((pk) => (
+                      <Card key={pk.name} url={pk.url} name={pk.name} onClick={() => handleGame(pk.name)}/>
+                  ))}
+              </div>
+              <Footer/>
+
+          </div>
+      </>
+
   )
 }
 
